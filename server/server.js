@@ -5,3 +5,5 @@ const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
+
+const marvels = require('./user.json');
