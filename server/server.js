@@ -36,3 +36,17 @@ app.get('/characters/:id', (req, res) => {
     res.status(404).json({ error: 'Character not found' });
   }
 });
+
+app.put('/characters/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const updatedCharacter = req.body;
+
+  const data = readData();
+  const index = data.characters.findIndex(char => char.id === id);
+
+  if (index !== -1) {
+    data.characters[index] = { id, ...updatedCharacter };
+    writeData(data);
+    res.json(data.characters[index]);
+  }
+});
